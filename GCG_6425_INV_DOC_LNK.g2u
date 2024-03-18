@@ -1,0 +1,480 @@
+﻿Program.Sub.ScreenSU.Start
+Gui.fmMain..Create(BaseForm)
+Gui.fmMain..Caption("Attach documents to Inventory Parts")
+Gui.fmMain..Size(678,556)
+Gui.fmMain..MinX(0)
+Gui.fmMain..MinY(0)
+Gui.fmMain..Position(0,0)
+Gui.fmMain..AlwaysOnTop(False)
+Gui.fmMain..FontName("Tahoma")
+Gui.fmMain..FontSize(8.25)
+Gui.fmMain..ControlBox(True)
+Gui.fmMain..MaxButton(True)
+Gui.fmMain..MinButton(True)
+Gui.fmMain..MousePointer(0)
+Gui.fmMain..Moveable(True)
+Gui.fmMain..Sizeable(True)
+Gui.fmMain..ShowInTaskBar(True)
+Gui.fmMain..TitleBar(True)
+Gui.fmMain..Event(UnLoad,fmMain_UnLoad)
+Gui.fmMain.ddlGrps.Create(DropDownList)
+Gui.fmMain.ddlGrps.Enabled(True)
+Gui.fmMain.ddlGrps.Visible(True)
+Gui.fmMain.ddlGrps.Zorder(0)
+Gui.fmMain.ddlGrps.Size(170,20)
+Gui.fmMain.ddlGrps.Position(13,22)
+Gui.fmMain.ddlGrps.FontName("Tahoma")
+Gui.fmMain.ddlGrps.FontSize(8.25)
+Gui.fmMain.lblgrps.Create(Label,"Groups",True,40,13,0,13,9,True,0,"Tahoma",8.25,,0,0)
+Gui.fmMain.lblgrps.BorderStyle(0)
+Gui.fmMain.lblgrps.FontStyle(True,False,False,False,False)
+Gui.fmMain.txtDragDrop.Create(TextBox,"",True,144,20,0,521,22,True,0,"Tahoma",8.25,12648447,1)
+Gui.fmMain.txtDragDrop.Event("DRAGDROPFILE",DragDrop)
+Gui.fmMain.txtDragDrop.Anchor(9)
+Gui.fmMain.lblDragDrop.Create(Label,"Drag and Drop Files Here:",True,142,13,0,523,9,True,0,"Tahoma",8.25,,0,0)
+Gui.fmMain.lblDragDrop.BorderStyle(0)
+Gui.fmMain.lblDragDrop.FontStyle(True,False,False,False,False)
+Gui.fmMain.lblDragDrop.Anchor(9)
+Gui.fmMain.GsGcDocsToAttach.Create(GsGridControl)
+Gui.fmMain.GsGcDocsToAttach.Enabled(True)
+Gui.fmMain.GsGcDocsToAttach.Visible(True)
+Gui.fmMain.GsGcDocsToAttach.Zorder(0)
+Gui.fmMain.GsGcDocsToAttach.Size(652,198)
+Gui.fmMain.GsGcDocsToAttach.Position(13,67)
+Gui.fmMain.GsGcDocsToAttach.Event(CellValueChanged,GsGcDocsToAttach_CellValueChanged)
+Gui.fmMain.GsGcDocsToAttach.Event(RowCellClick,GsGcDocsToAttach_RowCellClick)
+Gui.fmMain.GsGcDocsToAttach.Anchor(13)
+Gui.fmMain.GsGcAttachParts.Create(GsGridControl)
+Gui.fmMain.GsGcAttachParts.Enabled(True)
+Gui.fmMain.GsGcAttachParts.Visible(True)
+Gui.fmMain.GsGcAttachParts.Zorder(0)
+Gui.fmMain.GsGcAttachParts.Size(652,198)
+Gui.fmMain.GsGcAttachParts.Position(13,297)
+Gui.fmMain.GsGcAttachParts.Anchor(15)
+Gui.fmMain.lblDocsToAttach.Create(Label,"Documents to attach:",True,122,13,0,13,53,True,0,"Tahoma",8.25,,0,0)
+Gui.fmMain.lblDocsToAttach.BorderStyle(0)
+Gui.fmMain.lblDocsToAttach.FontStyle(True,False,False,False,False)
+Gui.fmMain.cmdAttach.Create(Button)
+Gui.fmMain.cmdAttach.Enabled(True)
+Gui.fmMain.cmdAttach.Visible(True)
+Gui.fmMain.cmdAttach.Zorder(0)
+Gui.fmMain.cmdAttach.Size(144,23)
+Gui.fmMain.cmdAttach.Position(521,498)
+Gui.fmMain.cmdAttach.Caption("Attach")
+Gui.fmMain.cmdAttach.FontName("Tahoma")
+Gui.fmMain.cmdAttach.FontSize(8.25)
+Gui.fmMain.cmdAttach.FontStyle(True,False,False,False,False)
+Gui.fmMain.cmdAttach.BackColor(12648384)
+Gui.fmMain.cmdAttach.Anchor(10)
+Gui.fmMain.cmdAttach.Event(Click,cmdAttach_Click)
+Gui.fmMain.cmdRemDoc.Create(Button)
+Gui.fmMain.cmdRemDoc.Enabled(True)
+Gui.fmMain.cmdRemDoc.Visible(True)
+Gui.fmMain.cmdRemDoc.Zorder(0)
+Gui.fmMain.cmdRemDoc.Size(144,23)
+Gui.fmMain.cmdRemDoc.Position(521,267)
+Gui.fmMain.cmdRemDoc.Caption("Remove Document")
+Gui.fmMain.cmdRemDoc.FontName("Tahoma")
+Gui.fmMain.cmdRemDoc.FontSize(8.25)
+Gui.fmMain.cmdRemDoc.FontStyle(True,False,False,False,False)
+Gui.fmMain.cmdRemDoc.BackColor(12632319)
+Gui.fmMain.cmdRemDoc.Anchor(9)
+Gui.fmMain.cmdRemDoc.Event(Click,cmdRemDoc_Click)
+Gui.fmMain.lblAttachParts.Create(Label,"Parts these documents will attach to:",True,210,13,0,13,282,True,0,"Tahoma",8.25,,0,0)
+Gui.fmMain.lblAttachParts.BorderStyle(0)
+Gui.fmMain.lblAttachParts.FontStyle(True,False,False,False,False)
+Gui.fmMain.txtCharacters.Create(TextBox,"6",True,100,20,0,278,22,True,0,"Tahoma",8.25,,1)
+Gui.fmMain.txtCharacters.ToolTip("Enter the number of characters in the filename to consider when looking for parts to link to.")
+Gui.fmMain.txtCharacters.NumericOnly(2)
+Gui.fmMain.txtCharacters.DefaultValue("")
+Gui.fmMain.lblCharacters.Create(Label,"Filename Characters to Consider:",True,186,13,0,235,9,True,0,"Tahoma",8.25,,0,0)
+Gui.fmMain.lblCharacters.BorderStyle(0)
+Gui.fmMain.lblCharacters.FontStyle(True,False,False,False,False)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+V.Global.sDocGroups.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+F.Intrinsic.Control.Try
+'TJS, July 2021
+'Customer: PAMCO
+'Quote: 24308
+'Business Case: The customer will have many variants of a part that have the same drawing that need to be attached to the inventory master. These variants will always have the same prefix, so the program should only look for the prefix when finding documents to attach. This program will need to be recursive since any given document to attach can be attached to many inventory master records.
+'Solution: Build a project that will look for a specified number of characters at the beginning of a filename and attach that file to all parts matching the prefix.
+'Example:
+'File in drop folder= 12345.JPG
+'Number Characters = 5
+'Inventory Master. First 5 Characters Linked?
+'1234463532 12344 No
+'1234567890 12345 YES
+'1234509876 12345 YES
+'1234568768 12345 YES
+'1234500009 12345 YES
+'1234600001 12346 NO
+Function.Intrinsic.UI.UsePixels ' Allows you to use Pixels instead of Twips throughout
+V.Local.sGroupSecurity.Declare
+V.Local.sGroupNames.Declare
+V.Local.sSQL.Declare
+V.Local.iCnt.Declare
+
+F.ODBC.Connection!conts.OpenCompanyConnection
+
+F.Intrinsic.String.Build("select GRP_ID from ATG_DOC_SEC where USR_GRP = '{0}' and PERMISSION = 1;",V.Caller.User,V.Local.sSQL)
+F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sSQL,V.Local.sGroupSecurity)
+Gui.fmMain.ddlGrps.AddItem("NO GROUP")
+Gui.fmMain.ddlGrps.Text("NO GROUP")
+F.Data.Dictionary.Create("dictGroupsIDs")
+F.Data.Dictionary.Create("dictGroupsNames")
+F.Data.Dictionary.AddItem("dictGroupsIDs","NO GROUP",-1)
+F.Data.Dictionary.AddItem("dictGroupsNames",-1,"NO GROUP")
+
+F.Intrinsic.Control.If(V.Ambient.ExecuteAndReturnEOF.Not)
+	'User is apart of at least one doc group
+	F.Intrinsic.String.Replace(V.Local.sGroupSecurity,"#$#","', '",V.Local.sGroupSecurity)
+	F.Intrinsic.String.Build("select rtrim(GRP_NAME) from ATG_DOC_GRP where GRP_ID in ('{0}') order by GRP_ID;",V.Local.sGroupSecurity,V.Local.sSQL)
+	F.ODBC.Connection!conts.ExecuteAndReturn(V.Local.sSQL,V.Local.sGroupNames)
+	F.Intrinsic.String.Split(V.Local.sGroupSecurity,"', '",V.Local.sGroupSecurity)
+	F.Intrinsic.String.Split(V.Local.sGroupNames,"#$#",V.Local.sGroupNames)
+	'Add the groups that the user is apart of to the list
+	F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.sGroupSecurity.UBound,1)
+		Gui.fmMain.ddlGrps.AddItem(V.Local.sGroupNames(V.Local.iCnt))
+		F.Data.Dictionary.AddItem("dictGroupsIDs",V.Local.sGroupNames(V.Local.iCnt),V.Local.sGroupSecurity(V.Local.iCnt).Long)
+		F.Data.Dictionary.AddItem("dictGroupsNames",V.Local.sGroupSecurity(V.Local.iCnt).Long,V.Local.sGroupNames(V.Local.iCnt))
+	F.Intrinsic.Control.Next(V.Local.iCnt)
+	F.Intrinsic.String.Join(V.Local.sGroupNames,"*!*",V.Global.sDocGroups)
+	F.Intrinsic.String.Join(V.Local.sGroupSecurity,"*!*",V.Local.sGroupSecurity)
+	V.Local.sGroupNames.Redim(0,0)
+	V.Local.sGroupSecurity.RedimPreserve(0,0)
+	F.Intrinsic.String.Build("NO GROUP*!*{0}",V.Global.sDocGroups,V.Global.sDocGroups)
+F.Intrinsic.Control.Else
+	'User is not on any document control groups, add the 'NO GROUP' to the group list
+	V.Global.sDocGroups.Set("NO GROUP")
+F.Intrinsic.Control.EndIf
+
+F.ODBC.Connection!conts.Close
+
+F.Data.DataTable.Create("dtDocs",True)
+F.Data.DataTable.AddColumn("dtDocs","Select","Boolean",False)
+F.Data.DataTable.AddColumn("dtDocs","GrpID","String")
+F.Data.DataTable.AddColumn("dtDocs","GrpName","String")
+F.Data.DataTable.AddColumn("dtDocs","FilePath","String")
+F.Data.DataTable.AddColumn("dtDocs","File","String")
+F.Data.DataTable.AddColumn("dtDocs","Description","String")
+F.Data.DataTable.AddColumn("dtDocs","BASIS","String")
+
+F.Data.DataTable.Create("dtParts",True)
+F.Data.DataTable.AddColumn("dtParts","PART","String")
+F.Data.DataTable.AddColumn("dtParts","LOCATION","String")
+F.Data.DataTable.AddColumn("dtParts","PL","String")
+F.Data.DataTable.AddColumn("dtParts","Description","String")
+F.Data.DataTable.AddColumn("dtParts","BASIS","String")
+
+F.Intrinsic.Control.CallSub(FormatGrids)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.FormatGrids.Start
+F.Intrinsic.Control.Try
+
+'Upper gridview showing documents to attach
+Gui.fmMain.GsGcDocsToAttach.AddGridviewFromDatatable("gvDocs","dtDocs")
+Gui.fmMain.GsGcAttachParts.AddGridviewFromDatatable("gvParts","dtParts")
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","HeaderFontBold",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpID","HeaderFontBold",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpName","HeaderFontBold",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","FilePath","HeaderFontBold",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","File","HeaderFontBold",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Description","HeaderFontBold",True)
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","Caption","Select")
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpID","Caption","Group ID")
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpName","Caption","Group Name")
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","FilePath","Caption","File Path")
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","File","Caption","File")
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Description","Caption","Link Description")
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpID","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpName","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","FilePath","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","File","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Description","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpID","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpName","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","FilePath","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","File","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Description","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","AllowEdit",False)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpID","AllowEdit",False)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpName","AllowEdit",False)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","FilePath","AllowEdit",False)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","File","AllowEdit",False)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Description","AllowEdit",True)
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","ReadOnly",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpID","ReadOnly",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpName","ReadOnly",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","FilePath","ReadOnly",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","File","ReadOnly",True)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Description","ReadOnly",False)
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","ShowCaption",False)
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","Select","Width",25)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpID","Width",40)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","GrpName","Width",60)
+
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","BASIS","Visible",False)
+Gui.fmMain.GsGcDocsToAttach.SetColumnProperty("gvDocs","BASIS","AllowShowHide",False)
+
+'Lower gridview showing affected parts
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PART","HeaderFontBold",True)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","LOCATION","HeaderFontBold",True)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PL","HeaderFontBold",True)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","Description","HeaderFontBold",True)
+
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PART","Caption","Part")
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","LOCATION","Caption","Location")
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PL","Caption","PL")
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","Description","Caption","Description")
+
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PART","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","LOCATION","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PL","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","Description","HeaderBackColor",V.Enum.ThemeColors!ThemeColor)
+
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PART","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","LOCATION","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","PL","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","Description","HeaderForeColor",V.Enum.ThemeColors!TextOnThemeColor)
+
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","BASIS","Visible",False)
+Gui.fmMain.GsGcAttachParts.SetColumnProperty("gvParts","BASIS","AllowShowHide",False)
+
+Gui.fmMain.GsGcDocsToAttach.MainView("gvDocs")
+Gui.fmMain.GsGcAttachParts.MainView("gvParts")
+
+Gui.fmMain..Show
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.FormatGrids.End
+
+Program.Sub.DragDrop.Start
+'Thanks Bix!
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+V.Local.sFileList.Declare
+V.Local.sPath.Declare
+V.Local.sFile.Declare
+V.Local.sFilter.Declare
+V.Local.iCnt.Declare
+V.Local.iFlNmLgthSet.Declare
+V.Local.sFileNameTrunc.Declare
+V.Local.sFileNameList.Declare
+V.Local.bFileCheck.Declare
+V.Local.sSQL.Declare
+
+V.Local.iFlNmLgthSet.Set(V.Screen.fmMain!txtCharacters.Text.Long)
+
+F.Intrinsic.Control.If(V.Local.iFlNmLgthSet.Trim,=,0)
+	F.Intrinsic.UI.Msgbox("Please provide a filename length greater than zero","Error!")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Data.DataTable.AcceptChanges("dtDocs")
+F.Data.DataTable.AcceptChanges("dtParts")
+
+F.Intrinsic.Control.BlockEvents
+F.Data.DataView.Create("dtDocs","dvFileCheck",22)
+
+F.Intrinsic.String.Split(V.Args.Files,"*!*",V.Local.sFileList)
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.Local.sFileList.UBound,1)
+	F.Intrinsic.String.Split(V.Local.sFileList(V.Local.iCnt),"\",V.Local.sPath)
+	V.Local.sFile.Set(V.Local.sPath(V.Local.sPath.UBound))
+	F.Intrinsic.String.Left(V.Local.sFile,V.Local.iFlNmLgthSet,V.Local.sFileNameTrunc)
+	V.Local.sPath(V.Local.sPath.UBound).Set("")
+	F.Intrinsic.String.Join(V.Local.sPath,"\",V.Local.sPath)
+	V.Local.sPath.RedimPreserve(0,0)
+	
+	F.Intrinsic.String.IsInString(V.Local.sFileNameList,V.Local.sFileNameTrunc,True,V.Local.bFileCheck)
+	
+	F.Intrinsic.Control.If(V.Local.bFileCheck,=,False)
+		F.Intrinsic.Control.If(V.Local.sFileNameList.Trim,=,"")
+			F.Intrinsic.String.Build("{0}",V.Local.sFileNameTrunc,V.Local.sFileNameList)
+		F.Intrinsic.Control.Else
+			F.Intrinsic.String.Build("{0}','{1}",V.Local.sFileNameList,V.Local.sFileNameTrunc,V.Local.sFileNameList)
+		F.Intrinsic.Control.EndIf
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.String.Build("GrpName = '{0}' and FilePath = '{1}' and File = '{2}'",V.Screen.fmMain!ddlGrps.Text,V.Local.sPath,V.Local.sFile,V.Local.sFilter)
+	F.Data.DataView.SetFilter("dtDocs","dvFileCheck",V.Local.sFilter)
+	F.Intrinsic.Control.If(V.DataView.dtDocs!dvFileCheck.RowCount,=,0)
+		'Add file to DTs
+		F.Data.DataTable.AddRow("dtDocs","GrpID",V.Dictionary.dictGroupsIDs![V.Screen.fmMain!ddlGrps.Text],"GrpName",V.Screen.fmMain!ddlGrps.Text,"FilePath",V.Local.sPath,"File",V.Local.sFile,"Description","","BASIS",V.Local.sFileNameTrunc)		
+	F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+F.Data.DataView.Close("dtDocs","dvFileCheck")
+
+F.Intrinsic.String.Build("Select PART,LOCATION,PRODUCT_LINE as PL,DESCRIPTION,Left(PART,{0}) as BASIS from V_INVENTORY_MSTR where Left(PART,{0}) in ('{1}')",V.Local.iFlNmLgthSet,V.Local.sFileNameList,V.Local.sSQL)
+F.ODBC.Connection!Conts.OpenCompanyConnection
+
+F.Data.DataTable.CreateFromSQL("dtPartsPull","conts",V.Local.sSQL)
+
+F.ODBC.Connection!conts.Close
+
+F.Data.DataTable.Merge("dtPartsPull","dtParts",True,2)
+F.Data.DataTable.Close("dtPartsPull")
+
+F.Intrinsic.Control.UnBlockEvents
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.DragDrop.End
+
+Program.Sub.GsGcDocsToAttach_CellValueChanged.Start
+F.Intrinsic.Control.Try
+
+F.Intrinsic.Control.SelectCase(V.Args.Column.UCase)
+	F.Intrinsic.Control.Case("DESCRIPTION")
+		F.Data.DataTable.SetValue("dtDocs",V.Args.RowIndex,"Description",V.Args.Value)
+F.Intrinsic.Control.EndSelect
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.GsGcDocsToAttach_CellValueChanged.End
+
+Program.Sub.GsGcDocsToAttach_RowCellClick.Start
+F.Intrinsic.Control.Try
+V.Local.bSel.Declare
+
+F.Intrinsic.Control.SelectCase(V.Args.Column.UCase)
+	F.Intrinsic.Control.Case("SELECT")
+		Gui.fmMain.GsGcDocsToAttach.GetCellValueByColumnName("gvDocs","Select",V.Args.RowIndex,V.Local.bSel)
+		F.Intrinsic.Control.If(V.Local.bSel,=,True)
+			F.Data.DataTable.SetValue("dtDocs",V.Args.RowIndex,"Select",False)
+		F.Intrinsic.Control.Else
+			F.Data.DataTable.SetValue("dtDocs",V.Args.RowIndex,"Select",True)
+		F.Intrinsic.Control.EndIf		
+F.Intrinsic.Control.EndSelect
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.GsGcDocsToAttach_RowCellClick.End
+
+Program.Sub.cmdAttach_Click.Start
+F.Intrinsic.Control.Try
+V.Local.iCnt.Declare
+V.Local.iCnt2.Declare
+V.Local.sFilter.Declare
+
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataTable.dtParts.RowCount--,1)
+	F.Intrinsic.String.Build("BASIS = '{0}'",V.DataTable.dtParts(V.Local.iCnt).BASIS!FieldVal,V.Local.sFilter)
+	F.Data.DataView.Create("dtDocs","dvAttach",22,V.Local.sFilter,"")
+	F.Intrinsic.Control.For(V.Local.iCnt2,0,V.DataView.dtDocs!dvAttach.RowCount--,1)
+		F.Intrinsic.Control.CallSub(LinkDocument,"LinkID",V.DataTable.dtParts(V.Local.iCnt).PART!FieldValTrim,"File",V.DataView.dtDocs!dvAttach(V.Local.iCnt2).File!FieldValTrim,"FilePath",V.DataView.dtDocs!dvAttach(V.Local.iCnt2).FilePath!FieldValTrim,"LinkType","00030","GroupID",V.DataView.dtDocs!dvAttach(V.Local.iCnt2).GrpID!FieldValTrim,"Desc",V.DataView.dtDocs!dvAttach(V.Local.iCnt2).Description!FieldValTrim)
+	F.Intrinsic.Control.Next(V.Local.iCnt2)
+	F.Data.DataView.Close("dtDocs","dvAttach")
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+F.Data.DataTable.DeleteRow("dtDocs",-1)
+F.Data.DataTable.DeleteRow("dtParts",-1)
+
+F.Data.Datatable.AcceptChanges("dtDocs")
+F.Data.Datatable.AcceptChanges("dtParts")
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdAttach_Click.End
+
+Program.Sub.LinkDocument.Start
+'Thanks Bix!
+'V.Args.LinkID, V.Args.File, V.Args.FilePath, V.Args.LinkType, V.Args.GroupID, V.Args.Desc
+V.Local.sLinkType.Declare
+V.Local.sSQL.Declare
+V.Local.sFilePath.Declare
+V.Local.iFileID.Declare
+F.Intrinsic.Control.Try
+
+F.Intrinsic.String.Build("{0}{1}",V.Args.FilePath,V.Args.File,V.Local.sFilePath)
+F.Global.DocumentControl.CreateReference(V.Args.LinkID,V.Args.LinkType,V.Local.iFileID)
+F.Global.DocumentControl.AddDocument(V.Local.iFileID,V.Local.sFilePath,V.Args.Desc,V.Args.GroupID,)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.LinkDocument.End
+
+Program.Sub.cmdRemDoc_Click.Start
+F.Intrinsic.Control.Try
+V.Local.iFlNmLgthSet.Declare
+V.Local.sFileNameTrunc.Declare
+V.Local.sFilter.Declare
+V.Local.iCnt.Declare
+V.Local.iCnt2.Declare
+
+V.Local.iFlNmLgthSet.Set(V.Screen.fmMain!txtCharacters.Text.Long)
+
+F.Data.DataView.Create("dtDocs","dvRem",22,"Select = 'True'","")
+
+F.Intrinsic.Control.If(V.DataView.dtDocs!dvRem.RowCount,=,0)
+	F.Intrinsic.UI.Msgbox("Please select the documents to remove","Error!")
+	F.Intrinsic.Control.ExitSub
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.For(V.Local.iCnt,0,V.DataView.dtDocs!dvRem.RowCount--,1)
+	F.Intrinsic.String.Left(V.DataView.dtDocs!dvRem(V.Local.iCnt).FILE!FieldVal,V.Local.iFlNmLgthSet,V.Local.sFileNameTrunc)
+	F.Intrinsic.String.Build("BASIS = '{0}'",V.Local.sFileNameTrunc,V.Local.sFilter)
+	F.Data.DataView.Create("dtParts","dvPartsRem",22,V.Local.sFilter,"")
+	
+	F.Intrinsic.Control.For(V.Local.iCnt2,V.DataView.dtParts!dvPartsRem.RowCount--,0,-1)
+		F.Data.DataView.DeleteRow("dtParts","dvPartsRem",V.Local.iCnt2)
+	F.Intrinsic.Control.Next(V.Local.iCnt2)	
+
+	F.Data.DataView.Close("dtParts","dvPartsRem")
+	
+	F.Data.DataView.DeleteRow("dtDocs","dvRem",V.Local.iCnt)
+F.Intrinsic.Control.Next(V.Local.iCnt)
+
+F.Data.DataView.Close("dtDocs","dvRem")
+
+F.Data.DataTable.SetValue("dtDocs",-1,"Select",False)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.Control.CallSub(Error,"SubRoutine",V.Ambient.CurrentSubroutine,"eNumber",V.Ambient.ErrorNumber,"eDescription",V.Ambient.ErrorDescription)
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdRemDoc_Click.End
+
+Program.Sub.fmMain_UnLoad.Start
+F.Intrinsic.Control.End
+Program.Sub.fmMain_UnLoad.End
+
+Program.Sub.Error.Start
+V.Local.sError.Declare
+V.Local.iRet.Declare
+V.Local.sSep.Declare
+
+F.Intrinsic.String.Build("-------------------------------------------------------------------------------------",,V.Local.sSep)
+F.Intrinsic.String.Build("({5}-{6}){0}{7}{0}Project: {4}{0}{7}{0}Sub: {1}{0}Error: {2}, {3}", V.Ambient.NewLine, V.Args.SubRoutine, V.Args.eNumber, V.Args.eDescription,V.Caller.ScriptFile,V.Ambient.Date, V.Ambient.Time,V.Local.sSep,V.Local.sError)
+F.Intrinsic.UI.Msgbox(V.Local.sError,"Error",V.Local.iRet)
+Program.Sub.Error.End
+
+Program.Sub.Comments.Start
+${$5$}$3.0.0.0$}$1
+${$6$}$tsmith$}$20210716102207105$}$xqPbj9atw05FglvzeFsZ9cqXP+qvG6tXV9Pfl2mwEkABeKgT/rVZ9ergSg/A2eolM8W5Sh+I+/8=
+Program.Sub.Comments.End
